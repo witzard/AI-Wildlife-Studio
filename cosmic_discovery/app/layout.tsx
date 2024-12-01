@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "AI wildlife studio",
-  description: "AI wildlife studio",
+  title: "Cosmic Discovery",
+  description: "Cosmic Discovery",
 };
 
 export default function RootLayout({
