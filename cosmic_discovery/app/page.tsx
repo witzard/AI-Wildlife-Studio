@@ -18,15 +18,14 @@ export default function Home() {
 
           <div className="mt-8 flex flex-wrap gap-4 text-center">
             <a
-              href="#"
+              href="/auth/registerForm"
               className="block w-full rounded bg-[#7b337d] px-12 py-3 text-sm font-medium text-white shadow hover:bg-[#430d4b] focus:outline-none focus:ring active:bg-[#430d4b] sm:w-auto"
             >
               Get Started
             </a>
 
-            <a
-              href="#"
-              className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-[#7b337d]  shadow hover:text-[#c874b2] focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
+            <a href="https://docs.google.com/document/d/1FN6uCB1dc5_h6EHpmwnJerfoEyW5UQ8KnbGgmSIpISw/edit?tab=t.0#heading=h.14mpx6a8znb7"
+              className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-[#7b337d]  shadow hover:text-[#c874b2] focus:outline-none focus:ring sm:w-auto"
             >
               Learn More
             </a>

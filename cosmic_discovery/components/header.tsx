@@ -24,12 +24,10 @@ export default function Header() {
                         </div>
                     </div>
 
-
-
                     <Menu as="div" className="flex items-center gap-4">
                         <div className="block">
                             <MenuButton className=" rounded bg-[#7b337d] p-2 text-white transition hover:text-[#210535]">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                             </MenuButton>
                         </div>
 
