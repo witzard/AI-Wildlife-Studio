@@ -12,7 +12,11 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        dancingScript: ['"Dancing Script"', 'cursive'],
+      },
     },
   },
   plugins: [],
 } satisfies Config;
+
