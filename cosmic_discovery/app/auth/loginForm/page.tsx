@@ -1,7 +1,6 @@
 "use client"
 import React from "react";
 import { Input } from "@/components/inputField";
-import { DatePicker } from "@nextui-org/react";
 
 const INPUT_LABEL_STYLE = "block text-md font-medium text-gray-300";
 export default function RegisterForm() {
