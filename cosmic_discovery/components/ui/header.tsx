@@ -35,7 +35,7 @@ export default async function Header() {
                             {user ?
                                 <div className="flex flex-row gap-4 items-center text-medium">{user.name}
                                     <div className="rounded-full bg-[#7b337d] p-2 text-white">
-                                        <Link href="/newBlog" >
+                                        <Link href="/newPost" >
                                             <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" /></svg>
                                         </Link>
                                     </div>

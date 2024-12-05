@@ -8,8 +8,7 @@ import deletePost from "../_actions/deletePost";
 
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { number } from "zod";
-import { isNumberObject } from "util/types";
+
 
 const MENU_TEXT_STYLE = "z-50 block px-4 py-2 text-sm text-gray-700";
 const MENU_TEXT = "m-2 text-gray-500 ";
@@ -26,6 +25,9 @@ export default async function BlogPage() {
         <section className="bg-[url(https://th.bing.com/th/id/OIG4.Q8Bfua8NWu3HHOIO6x54?pid=ImgGn)] bg-cover bg-center bg-no-repeat">
             <div className="flex items-center justify-center py-4 ">
                 <div className="sm:mx-16 w-full max-w-screen-xl p-4 sm:p-16 relative block bg-[#210535]/90 rounded-2xl ">
+                <h1 className="mb-4 text-medium md:text-2xl font-bold text-white">Start your discovery with our community</h1>
+                <hr className="my-4" />
+
                     {posts.map((post) => (
                         <div key={post.id} className="p-2 sm:p-4 lg:p-6 mx-auto max-w-screen-sm m-3 rounded-xl border-2 bg-white">
                             <div className="flex justify-between">
@@ -49,12 +51,12 @@ export default async function BlogPage() {
 
                                         <MenuItems transition className="z-50 absolute right-[10%] w-[20%] origin-top-right rounded-md bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in">
                                             <div className="py-1">
-                                                {user && user.name == post.user.name ?
+                                                {user && user.email == post.user.email?
                                                     <>
                                                         <div className={` ${MENU_TEXT_STYLE}`}>
                                                             <MenuItem>
                                                                 <Link href={{
-                                                                    pathname: '/blog/edit',
+                                                                    pathname: '/editPost',
                                                                     query: { id: post.id, topic: post.topic, detail: post.detail }
                                                                 }}
                                                                     className={MENU_TEXT}>Edit</Link>
@@ -74,7 +76,7 @@ export default async function BlogPage() {
 
                                                 <div className={MENU_TEXT_STYLE}>
                                                     <MenuItem>
-                                                        <Link className={MENU_TEXT} href="/">Hide post</Link>
+                                                        <Link className={MENU_TEXT} href="/">Hide</Link>
                                                     </MenuItem>
                                                 </div>
                                             </div>
