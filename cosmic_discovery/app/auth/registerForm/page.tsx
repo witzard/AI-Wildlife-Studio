@@ -1,6 +1,6 @@
 "use client"
 import { Input } from "@/components/ui/inputField";
-import { DatePicker } from "@nextui-org/react";
+import { DateInput } from "@nextui-org/react";
 import { redirect } from "next/navigation"
 import register from "../../_actions/register"
 import { useActionState } from "react"
@@ -58,8 +58,10 @@ export default function RegisterForm() {
                             <label htmlFor="dateOfBirth" className={INPUT_LABEL_STYLE}>
                                 Birth date
                             </label>
-                        
-                                <DatePicker/>
+                            <div className="opacity-50">
+                                <DateInput label={" "} id="dateOfBirth" name="dateOfBirth" />
+                            </div>
+
                         </div>
 
                         <div>
@@ -68,16 +70,14 @@ export default function RegisterForm() {
 
                         <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
 
-
-
-                            <div className="">
-                                {data.message ? <p>{data.message}</p> : <SubmitButton label="Create an account" />}
+                            <div >
+                                {data.message ? <p>{data.message}</p> : <SubmitButton label="Sign up" />}
                             </div>
 
                             <p className="mt-4 text-sm text-gray-400 sm:mt-0 dark:text-gray-400">
                                 Already have an account?{" "}
                                 <Link href="/auth/loginForm" className="text-gray-300 underline dark:text-gray-200">
-                                    Log in
+                                    Sign in
                                 </Link>.
                             </p>
                         </div>

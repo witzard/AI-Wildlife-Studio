@@ -61,7 +61,7 @@ export default function APODPost() {
                 </div>
                 <div className="hidden lg:block w-1 h-[100%] bg-white "></div>
 
-                <div className=" text-white text-xs lg:text-md">{" "}{apodData.explanation}</div>
+                <div className=" text-white text-xs md:text-medium lg:text-lg">{" "}{apodData.explanation}</div>
             </div>
         </div>
     );

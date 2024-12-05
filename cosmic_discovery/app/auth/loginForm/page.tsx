@@ -31,6 +31,7 @@ export default function RegisterForm() {
                                 Email
                             </label>
                             <Input type="email" id="email" name="email" />
+                            {data.error?.email && <div className="text-red-600">{data.error?.email[0]}</div>}
                         </div>
 
                         <div className="col-span-6">
@@ -38,6 +39,7 @@ export default function RegisterForm() {
                                 Password
                             </label>
                             <Input type="password" id="password" name="password" />
+                            {data.error?.password && <div className="text-red-600">{data.error?.password[0]}</div>}
                         </div>
 
 

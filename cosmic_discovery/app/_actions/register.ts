@@ -7,11 +7,10 @@ import { z } from "zod";
 
 const addSchema = z.object({
     email: z.string().email().max(20),
-    name: z.string().min(3).max(8, {message:"Not more than 8 characters"}),
+    name: z.string().min(3).max(8, { message: "Not more than 8 characters" }),
     password: z.string().min(3),
-    dateOfBirth: z.date(),
+    dateOfBirth: z.string(),
 })
-
 
 type fieldErrors = {
     email?: string[] | undefined;
@@ -21,32 +20,35 @@ type fieldErrors = {
     dateOfBirth?: string[] | undefined;
 }
 
-export default async function register(prevState: unknown, formData: FormData) : 
+export default async function register(prevState: unknown, formData: FormData):
     Promise<{
-        message?:string
-        data?:string
-        error?:fieldErrors
+        message?: string
+        data?: string
+        error?: fieldErrors
     }> {
- 
-    console.log("Email: " + formData.get("email") +
-        formData.get("name"))
 
     const result = addSchema.safeParse(Object.fromEntries(formData.entries()))
     if (result.success === false) {
         console.log("Error: ", result.error.formErrors.fieldErrors)
-        return {error: result.error.formErrors.fieldErrors}
+        return { error: result.error.formErrors.fieldErrors }
     }
 
     const data = result.data
+    let { email, name, password, dateOfBirth } = data
 
-    let {email, name, password} = data
+    // Ensure dateOfBirth is in ISO-8601 format
+    const parsedDate = new Date(dateOfBirth);
+    if (isNaN(parsedDate.getTime())) {
+        return { error: { dateOfBirth: ["Invalid date format. Please use a valid date."] } }
+    }
+    dateOfBirth = parsedDate.toISOString(); // Ensure the date is in ISO-8601 format
 
     password = await hashPassword(password)
 
     try {
-        await prisma.user.create({ data: { email, name, password, dateOfBirth: new Date(), } })
-        
-        // pull the recently added user to login
+        await prisma.user.create({ data: { email, name, password, dateOfBirth, } })
+
+        // Pull the recently added user to login
         const user = await prisma.user.findUnique({
             where: { email },
         })
@@ -57,9 +59,9 @@ export default async function register(prevState: unknown, formData: FormData) :
             throw new Error("User not found after creation");
         }
     }
-    catch (error) {
-        console.log("error: " + error)
-        return { error: {message: error + "" }}
+    catch (error: any) {
+        console.log("error: ", error)
+        return { error: { message: error.message || "Unknown error" } }
     }
     return { message: "Added user successful" }
 }

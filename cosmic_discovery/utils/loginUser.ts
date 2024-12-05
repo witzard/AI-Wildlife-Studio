@@ -10,7 +10,7 @@ if (!secretKey) {
 }
 
 const key = new TextEncoder().encode(secretKey);
-const TIMEOUT = 300; // 300 seconds (5 minutes)
+const TIMEOUT = 3000; // 300 seconds (5 minutes)
 
 /**
  * Encrypt a payload into a JWT.
