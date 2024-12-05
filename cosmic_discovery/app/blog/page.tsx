@@ -1,4 +1,4 @@
-import prisma from "@/utils/db"
+import prisma from "@/utils/db";
 import { getSession } from "@/utils/loginUser";
 import LikeButton from "../_component/LikeButton";
 import { likePost, unlikePost } from "../_actions/likePost";
@@ -7,9 +7,11 @@ import DeleteButton from "../_component/DeleteButton";
 import deletePost from "../_actions/deletePost";
 
 import Link from "next/link";
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { number } from "zod";
+import { isNumberObject } from "util/types";
 
-const MENU_TEXT_STYLE = "z-50 block px-4 py-2 text-sm text-gray-700"
+const MENU_TEXT_STYLE = "z-50 block px-4 py-2 text-sm text-gray-700";
 const MENU_TEXT = "m-2 text-gray-500 ";
 
 export default async function BlogPage() {
@@ -17,15 +19,15 @@ export default async function BlogPage() {
         include: {
             user: true,
         }
-    })
+    });
     const user = await getSession();
-
+    
     return (
         <section className="bg-[url(https://th.bing.com/th/id/OIG4.Q8Bfua8NWu3HHOIO6x54?pid=ImgGn)] bg-cover bg-center bg-no-repeat">
             <div className="flex items-center justify-center py-4 ">
-                <div className=" sm:mx-16 w-full max-w-screen-xl p-4 sm:p-16 relative block bg-[#210535]/90 rounded-2xl ">
+                <div className="sm:mx-16 w-full max-w-screen-xl p-4 sm:p-16 relative block bg-[#210535]/90 rounded-2xl ">
                     {posts.map((post) => (
-                        <div key={post.id} className="p-2 sm:p-4 lg:p-6 mx-auto max-w-screen-sm m-3 rounded-xl border-2  bg-white">
+                        <div key={post.id} className="p-2 sm:p-4 lg:p-6 mx-auto max-w-screen-sm m-3 rounded-xl border-2 bg-white">
                             <div className="flex justify-between">
                                 <div className="flex items-center sm:gap-2">
                                     <div className="text-xs sm:text-gray-500">
@@ -35,11 +37,12 @@ export default async function BlogPage() {
                                     <div className="flex items-center gap-1 text-gray-500">
                                         <p className="text-xs"> {post.createdAt.toLocaleDateString()}</p>
                                     </div>
+            
                                 </div>
                                 <div className="flex items-center">
                                     <Menu as="div" className="flex items-center gap-4">
                                         <div className="block">
-                                            <MenuButton className=" rounded-full p-2 text-white transition hover:text-[#210535]">
+                                            <MenuButton className="rounded-full p-2 text-white transition hover:text-[#210535]">
                                                 <svg width={15} height={15} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5Z" stroke="#7a7a7a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12Z" stroke="#7a7a7a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" stroke="#7a7a7a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
                                             </MenuButton>
                                         </div>
@@ -52,7 +55,7 @@ export default async function BlogPage() {
                                                             <MenuItem>
                                                                 <Link href={{
                                                                     pathname: '/blog/edit',
-                                                                    query: { id: post.id, subject: post.topic, detail: post.detail }
+                                                                    query: { id: post.id, topic: post.topic, detail: post.detail }
                                                                 }}
                                                                     className={MENU_TEXT}>Edit</Link>
 
@@ -61,12 +64,11 @@ export default async function BlogPage() {
 
                                                         <div className={` ${MENU_TEXT_STYLE}`}>
                                                             <div className={MENU_TEXT} >
-                                                                <MenuItem >
+                                                                <MenuItem as="div">
                                                                     <DeleteButton id={post.id} deletePost={deletePost} />
                                                                 </MenuItem>
-                                                                {post.id}
+                                                               
                                                             </div>
-
                                                         </div>
                                                     </> : ""}
 
@@ -90,12 +92,13 @@ export default async function BlogPage() {
                                 <p className="text-sm text-gray-700">{post.detail}</p>
                             </div>
                             <hr className="my-2" />
-                            <div className=" text-lg sm:text-xs">
+                            <div className="text-lg sm:text-xs">
                                 <LikeButton id={post.id} likePost={likePost} unlikePost={unlikePost} /> {post.like}
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
-        </section>);
+        </section>
+    );
 }

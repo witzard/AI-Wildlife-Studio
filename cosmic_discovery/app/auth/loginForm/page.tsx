@@ -11,7 +11,7 @@ const INPUT_LABEL_STYLE = "block text-md font-medium text-gray-300";
 export default function RegisterForm() {
     const [data, action] = useActionState(login, {})
     if (data.message) {
-        redirect("/home")
+        redirect("/blog")
     }
     return (
         <section className="bg-[url(https://th.bing.com/th/id/OIG4.Q8Bfua8NWu3HHOIO6x54?pid=ImgGn)] bg-cover bg-center bg-no-repeat">

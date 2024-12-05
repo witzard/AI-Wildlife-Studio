@@ -13,7 +13,7 @@ export default function RegisterForm() {
     const [data, action] = useActionState(register, {})
 
     if (data.message) {
-        redirect("/home")
+        redirect("/blog")
     }
 
     return (

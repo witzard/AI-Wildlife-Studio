@@ -21,7 +21,7 @@ export default async function Home() {
           <div className="mt-8 flex flex-wrap gap-4 text-center">
             
             <Link
-              href={user ? "home" :"/auth/registerForm" }
+              href={user ? "/blog" :"/auth/registerForm" }
               className="block w-full rounded bg-[#7b337d] px-12 py-3 text-sm font-medium text-white shadow hover:bg-[#430d4b] focus:outline-none focus:ring active:bg-[#430d4b] sm:w-auto"
             >
               Get Started
