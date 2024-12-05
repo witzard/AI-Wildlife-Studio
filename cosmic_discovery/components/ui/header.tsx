@@ -68,7 +68,13 @@ export default async function Header() {
                                         <div >
                                             <MenuItem>
                                                 <div className={MENU_TEXT_STYLE}>
-                                                    <Link className={MENU_TEXT} href="/APOD">APOD</Link>
+                                                    <Link className={MENU_TEXT} href="/apod">APOD</Link>
+                                                </div>
+                                            </MenuItem>
+
+                                            <MenuItem>
+                                                <div className={MENU_TEXT_STYLE}>
+                                                    <Link className={MENU_TEXT} href="/newsPage">News</Link>
                                                 </div>
                                             </MenuItem>
 

@@ -9,6 +9,8 @@ import deletePost from "../_actions/deletePost";
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 
+import NewsFeed from "../newsPage/page";
+
 
 const MENU_TEXT_STYLE = "z-50 block px-4 py-2 text-sm text-gray-700";
 const MENU_TEXT = "m-2 text-gray-500 ";
@@ -20,13 +22,12 @@ export default async function BlogPage() {
         }
     });
     const user = await getSession();
-    
+
     return (
-        <section className="bg-[url(https://th.bing.com/th/id/OIG4.Q8Bfua8NWu3HHOIO6x54?pid=ImgGn)] bg-cover bg-center bg-no-repeat">
+        <div className="bg-[url(https://th.bing.com/th/id/OIG4.Q8Bfua8NWu3HHOIO6x54?pid=ImgGn)] bg-cover bg-center bg-no-repeat">
             <div className="flex items-center justify-center py-4 ">
-                <div className="sm:mx-16 w-full max-w-screen-xl p-4 sm:p-16 relative block bg-[#210535]/90 rounded-2xl ">
-                <h1 className="mb-4 text-medium md:text-2xl font-bold text-white">Start your discovery with our community</h1>
-                <hr className="my-4" />
+                <div className="p-5 sm:p-10 lg:p-15 mx-auto max-w-screen-sm sm:mx-16 w-full relative block bg-[#210535]/90 rounded-2xl ">
+                    <h1 className="mb-4 text-medium md:text-2xl font-bold text-white">Start your discovery with our community</h1>
 
                     {posts.map((post) => (
                         <div key={post.id} className="p-2 sm:p-4 lg:p-6 mx-auto max-w-screen-sm m-3 rounded-xl border-2 bg-white">
@@ -39,7 +40,7 @@ export default async function BlogPage() {
                                     <div className="flex items-center gap-1 text-gray-500">
                                         <p className="text-xs"> {post.createdAt.toLocaleDateString()}</p>
                                     </div>
-            
+
                                 </div>
                                 <div className="flex items-center">
                                     <Menu as="div" className="flex items-center gap-4">
@@ -51,7 +52,7 @@ export default async function BlogPage() {
 
                                         <MenuItems transition className="z-50 absolute right-[10%] w-[20%] origin-top-right rounded-md bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in">
                                             <div className="py-1">
-                                                {user && user.email == post.user.email?
+                                                {user && user.email == post.user.email ?
                                                     <>
                                                         <div className={` ${MENU_TEXT_STYLE}`}>
                                                             <MenuItem>
@@ -69,7 +70,7 @@ export default async function BlogPage() {
                                                                 <MenuItem as="div">
                                                                     <DeleteButton id={post.id} deletePost={deletePost} />
                                                                 </MenuItem>
-                                                               
+
                                                             </div>
                                                         </div>
                                                     </> : ""}
@@ -101,6 +102,7 @@ export default async function BlogPage() {
                     ))}
                 </div>
             </div>
-        </section>
+
+        </div>
     );
 }
