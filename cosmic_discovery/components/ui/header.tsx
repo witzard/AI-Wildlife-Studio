@@ -8,7 +8,8 @@ const quicksand = Quicksand({
     subsets: ["latin-ext"],
 });
 
-const menu_text = "m-2 text-gray-500 transition hover:text-gray-500/75";
+const MENU_TEXT_STYLE = "z-50 block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+const MENU_TEXT = "m-2 text-gray-500 transition hover:text-gray-500/75";
 
 export default function Header() {
     return (
@@ -20,7 +21,7 @@ export default function Header() {
                             <Image width={30} height={30} src="/space.png" alt="logo"></Image>
                         </a>
                         <div className={quicksand.className}>
-                            <a href="/" className="font-bold text-3xl text-[#c874b2]">Cosmic Discovery</a>
+                            <a href="/" className="font-bold text-xs sm:text-3xl text-[#c874b2]">Cosmic Discovery</a>
                         </div>
                     </div>
 
@@ -34,16 +35,18 @@ export default function Header() {
                         <MenuItems transition className="z-50 absolute top-10 right-10 mt-2 w-52  rounded-md bg-white shadow-lg  ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in">
                             <div className="py-1">
                                 <MenuItem>
-                                    <div className="z-50 block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
-                                        <a href="/" className={menu_text}>Home</a>
+                                    <div className={MENU_TEXT_STYLE}>
+                                        <a href="/" className={MENU_TEXT}>Home</a>
                                     </div>
 
                                 </MenuItem>
                                 <MenuItem>
-                                    <div className="z-50 block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
-                                        <a href="/" className={menu_text}>Blog</a>
+                                    <div className={MENU_TEXT_STYLE}>
+                                        <a href="/" className={MENU_TEXT}>Blog</a>
                                     </div>
                                 </MenuItem>
+
+
                             </div>
                         </MenuItems>
                     </Menu>

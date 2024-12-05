@@ -1,12 +1,23 @@
 "use client"
-import React from "react";
-import { Input } from "@/components/inputField";
+import { Input } from "@/components/ui/inputField";
 import { DatePicker } from "@nextui-org/react";
+import { redirect } from "next/navigation"
+import register from "../../_actions/register"
+import { useActionState } from "react"
+import SubmitButton from "@/app/_component/SubmitButton";
+import Link from "next/link"
+
 
 const INPUT_LABEL_STYLE = "block text-md font-medium text-gray-300";
 export default function RegisterForm() {
+    const [data, action] = useActionState(register, {})
+
+    if (data.message) {
+        redirect("/home")
+    }
+
     return (
-        <section className="bg-[url(https://th.bing.com/th/id/OIG4.Q8Bfua8NWu3HHOIO6x54?pid=ImgGn)] bg-cover bg-center bg-no-repeat">
+        <div className="bg-[url(https://th.bing.com/th/id/OIG4.Q8Bfua8NWu3HHOIO6x54?pid=ImgGn)] bg-cover bg-center bg-no-repeat">
             <div className="flex items-center justify-center px-8 py-8 ">
                 <div className="max-w-xl p-12 relative block bg-[#210535]/90 rounded-2xl ">
 
@@ -17,50 +28,61 @@ export default function RegisterForm() {
                         Create an account to start exploring the universe.
                     </p>
 
-                    <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+                    <form action={action} className="mt-8 grid grid-cols-6 gap-6">
                         <div className="col-span-6">
-                            <label htmlFor="Email" className={INPUT_LABEL_STYLE}>
+                            <label htmlFor="email" className={INPUT_LABEL_STYLE}>
                                 Email
                             </label>
-                            <Input type="email" id="Email" name="email" />
+                            <Input type="email" id="email" name="email" required />
+                            {data.error?.email && <div className="text-red-600">{data.error?.email[0]}</div>}
                         </div>
 
                         <div className="col-span-6 sm:col-span-3">
-                            <label htmlFor="FirstName" className={INPUT_LABEL_STYLE}>
+                            <label htmlFor="name" className={INPUT_LABEL_STYLE}>
                                 Username
                             </label>
-                            <Input type="text" id="FirstName" name="first_name" />
+                            <Input type="text" id="name" name="name" required />
+                            {data.error?.name && <div className="text-red-600">{data.error?.name[0]}</div>}
                         </div>
 
 
                         <div className="col-span-6 sm:col-span-3">
-                            <label htmlFor="Password" className={INPUT_LABEL_STYLE}>
+                            <label htmlFor="password" className={INPUT_LABEL_STYLE}>
                                 Password
                             </label>
-                            <Input type="password" id="Password" name="password" />
+                            <Input type="password" id="password" name="password" required />
+                            {data.error?.password && <div className="text-red-600">{data.error?.password[0]}</div>}
                         </div>
 
                         <div className="col-span-6">
-                            <label htmlFor="BirthDate" className={INPUT_LABEL_STYLE}>
+                            <label htmlFor="dateOfBirth" className={INPUT_LABEL_STYLE}>
                                 Birth date
                             </label>
-                            <DatePicker label=" " typeof="dabirthDatete" id="birthDate" name="birthDate" showMonthAndYearPickers />
+                        
+                                <DatePicker/>
+                        </div>
+
+                        <div>
+                            {data.error?.message && <div className="text-red-600">{data.error?.message}</div>}
                         </div>
 
                         <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                            <button className="inline-block shrink-0 rounded-md border border-[#67296d] bg-[#67296d] px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-[c874b2] focus:outline-none focus:ring active:text-[#c874b2] dark:hover:bg-[#c874b2] dark:hover:text-white" >
-                                Create an account
-                            </button>
+
+
+
+                            <div className="">
+                                {data.message ? <p>{data.message}</p> : <SubmitButton label="Create an account" />}
+                            </div>
 
                             <p className="mt-4 text-sm text-gray-400 sm:mt-0 dark:text-gray-400">
                                 Already have an account?{" "}
-                                <a href="/auth/loginForm" className="text-gray-300 underline dark:text-gray-200">
+                                <Link href="/auth/loginForm" className="text-gray-300 underline dark:text-gray-200">
                                     Log in
-                                </a>.
+                                </Link>.
                             </p>
                         </div>
                     </form>
                 </div>
             </div>
-        </section>);
+        </div>);
 }
