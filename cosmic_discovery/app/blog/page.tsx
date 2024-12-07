@@ -30,7 +30,7 @@ export default async function BlogPage() {
                     <h1 className="mb-4 text-medium md:text-2xl font-bold text-white">Start your discovery with our community</h1>
 
                     {posts.map((post) => (
-                        <div key={post.id} className="p-2 sm:p-4 lg:p-6 mx-auto max-w-screen-sm m-3 rounded-xl border-2 bg-white">
+                       <div key={post.id} className="p-2 sm:p-4 lg:p-6 mx-auto max-w-screen-sm m-3 rounded-xl border-2 bg-white">
                             <div className="flex justify-between">
                                 <div className="flex items-center sm:gap-2">
                                     <div className="text-xs sm:text-gray-500">
